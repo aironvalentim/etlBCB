@@ -1,5 +1,27 @@
 # etlBCB
 
+# Estrutura do Projeto
+## A estrutura do projeto é organizada da seguinte maneira:
+
+graphql
+Copiar
+Editar
+.
+├── src/
+│   ├── extractTransform.py  # Função para extrair dados da API do Banco Central
+│   ├── load.py             # Função para salvar os dados extraídos em CSV
+│   └── main.py             # Arquivo principal que executa a extração e carga dos dados
+├── datasets/               # Pasta onde os dados extraídos são salvos
+│   └── meiosPagamentosTri.csv  # Arquivo CSV gerado com os dados extraídos
+└── README.md               # Documentação do projeto
+
+# Dependências
+O projeto requer as seguintes bibliotecas:
+
+requests: Para fazer requisições à API do Banco Central.
+
+pandas: Para manipulação de dados e exportação para CSV.
+
 # 📊 Dados sobre Estabelecimentos, Transações e Tarifas de Cartões de Pagamento
 
 ## 📌 Visão Geral
