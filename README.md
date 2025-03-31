@@ -3,10 +3,7 @@
 # Estrutura do Projeto
 ## A estrutura do projeto é organizada da seguinte maneira:
 
-graphql
-Copiar
-Editar
-.
+
 ├── src/
 │   ├── extractTransform.py  # Função para extrair dados da API do Banco Central
 │   ├── load.py             # Função para salvar os dados extraídos em CSV
@@ -30,60 +27,19 @@ Este repositório contém informações detalhadas sobre a aceitação de cartõ
 Os dados são atualizados trimestralmente e ficam disponíveis 90 dias após o final de cada trimestre.
 
 ---
-
-## 📂 Estrutura dos Dados
-
-### 🏬 **Quantidade de Estabelecimentos Credenciados**
-- Total e ativos
-- Segmentação por bandeira e função do cartão
-
-### 💳 **Tarifas de Intercâmbio (TIC) e Volumetria**
-- Taxas cobradas nas transações
-- Formas de captura
-- Parcelamento
-- Quantidade e valor das transações
-
-### 📉 **Taxas de Desconto (MDR) e Volumetria**
-- Média das taxas cobradas
-- Quantidade de transações
-- Valor total das transações
-
-### 🏧 **Terminais de Autoatendimento (ATM)**
-- Quantidade instalada
-- Localização (UF)
-- Tipo de compartilhamento
-
-### 🔄 **Volumetria das Operações Intrabancárias**
-- Operações realizadas entre clientes da mesma instituição
-- Exclusão de transferências Pix intrabancárias
-
-### 📡 **Volumetria por Canal de Acesso e Produto**
-- Transações por tipo de canal
-- Detalhamento de operações em ATMs
-
-### 🏪 **Quantidade de Terminais POS e PDV**
-- Número de terminais POS e PDV
-- Distribuição por UF
-- POS com leitora de chip e compartilhados
-
-### 🎁 **Tarifas, Programas de Recompensa e Fidelidade**
-- Tarifas cobradas por emissão e uso do cartão
-- Estoque, aquisição e conversão de pontos
-- Gastos com programas de recompensa
+| **Coluna**                        | **Tipo**   | **Descrição**    | **Exemplo**              |                                                                                                                                                                                             
+|-----------------------------------|------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------|
+| **trimestre**                     | texto      | Data-base de referência no formato AAAAT (Ano e Trimestre).                                                                                                                                                 | "202503"                 |
+| **funcaoCartao**                  | texto      | Função do cartão de pagamento, especificando a forma de pagamento escolhida pelo portador e aceita pelo estabelecimento credenciado.                                                                         | "Crédito"                |
+| **bandeira**                      | texto      | Bandeira que detém os direitos e deveres da marca estampada no cartão, incluindo as bandeiras pertencentes aos emissores.                                                                                     | "Visa"                   |
+| **produto**                       | texto      | Categoria atribuída a um cartão de pagamento, com um conjunto de vantagens que o diferenciam, conforme o perfil do portador.                                                                                  | "Premium"                |
+| **modalidade**                    | texto      | Define se o cartão de crédito é emitido em parceria com comerciante ou entidade.                                                                                                                             | "Convênio"               |
+| **tarifaAnuidadeMedia**           | decimal    | Média das tarifas de anuidade praticadas pelo emissor, calculada pela receita trimestral das tarifas de anuidade dividida pelo número de cartões com cobrança de tarifa.                                           | 120.50                   |
+| **qtdPontosAcumulados**           | decimal    | Estoque de pontos creditados nas contas dos portadores no final do trimestre, considerando pontos adquiridos no trimestre, menos os pontos transferidos ou expirados.                                           | 1,250.00                 |
+| **qtdPontosAdquiridos**           | decimal    | Quantidade de pontos acumulados pelos portadores de cartões no âmbito dos programas de recompensa, no decorrer do trimestre.                                                                                   | 500.00                   |
+| **qtdPontosConvertidos**          | decimal    | Quantidade de pontos transferidos para programas de fidelidade/recompensa de terceiros no decorrer do trimestre.                                                                                             | 150.00                   |
+| **qtdPontosExpirados**            | decimal    | Quantidade de pontos expirados no decorrer do trimestre, no âmbito dos programas de recompensa do emissor.                                                                                                     | 50.00                    |
+| **valorGastoProgramaRecompra**    | decimal    | Valor total gasto no trimestre pelo emissor para repasses em programas de fidelidade/recompensa de terceiros, com aquisição de bens ou serviços pelos portadores de cartões.                                      | 100,000.00               |
 
 ---
 
-## 📥 Acesso aos Dados
-Os dados podem ser consultados e filtrados com os seguintes parâmetros:
-- `trimestre` (AAAAT) → trimestre de referência
-- `$format` → tipo de conteúdo retornado
-- `$select` → propriedades retornadas
-- `$filter` → filtros aplicáveis
-- `$orderby` → ordenação dos dados
-- `$skip` → índice inicial dos dados
-- `$top` → limite de registros retornados
-
----
-
-## 📜 Licença
-Os dados são disponibilizados conforme as diretrizes e regulamentos aplicáveis.
