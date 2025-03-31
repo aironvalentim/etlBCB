@@ -5,12 +5,13 @@
 
 
 ├── src/
-│   ├── extractTransform.py  		 
-│   ├── load.py            			 
-│   └── main.py             			
+│   ├── extractTransform.py
+│   ├── load.py
+│   └── main.py
 ├── datasets/
-│   └── meiosPagamentosTri.csv  	
-└── README.md               		 
+│   └── meiosPagamentosTri.csv
+└── README.md
+          		 
 
  ### Função para extrair dados da API do Banco Central
  ### Função para salvar os dados extraídos em CSV
