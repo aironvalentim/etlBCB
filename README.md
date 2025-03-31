@@ -8,9 +8,10 @@
 │   ├── extractTransform.py  # Função para extrair dados da API do Banco Central
 │   ├── load.py             # Função para salvar os dados extraídos em CSV
 │   └── main.py             # Arquivo principal que executa a extração e carga dos dados
-├── datasets/               # Pasta onde os dados extraídos são salvos
+├── datasets/
 │   └── meiosPagamentosTri.csv  # Arquivo CSV gerado com os dados extraídos
 └── README.md               # Documentação do projeto
+
 
 # Dependências
 O projeto requer as seguintes bibliotecas:
