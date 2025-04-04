@@ -1,2 +1,5 @@
 requestes
 pandas
+pymysql
+sqlalchemy
+black
