@@ -1,5 +1,5 @@
-requestes
+requests
 pandas
-pymysql
 sqlalchemy
+pymysql
 black
