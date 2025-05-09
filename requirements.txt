@@ -1,5 +1,6 @@
 requests
 pandas
-sqlalchemy
 pymysql
+sqlalchemy
 black
+matplotlib

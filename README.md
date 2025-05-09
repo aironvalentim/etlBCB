@@ -1,54 +1,60 @@
 # etlBCB
 
-# Estrutura do Projeto
-## A estrutura do projeto é organizada da seguinte maneira:
+# Introdução
+
+A turma 34 em Análise e Desenvolvimento de Sistemas do SENAC está aprendendo, na disciplina de Data Science, os conceitos de ETL (Extract/extrair, transform/transformar e load/carregar). 
+
+Nas últimas 2 semanas pudemos desenvolver práticas em sala para adquirir consistência de conhecimento, conseguindo criar as funções extactTransform (ET) e load (L) com o auxílio do professor Marcos Mialaret. Estas, por sua vez, possuem docstring para elucidação de execução.
+
+## Dicionário de Dados
+
+### Meios de Pagamentos Trimestrais
+Conjunto de informações sobre operações com cartões de pagamento e de transferências de crédito (boletos bancários, cartões de crédito e débito, transferências bancárias). Dados ficam disponíveis 90 dias após o final do trimestre.
+
+### Parâmetros
+
+| Nome         | Tipo     | Título   | Descrição                                                                 |
+|--------------|----------|----------|---------------------------------------------------------------------------|
+| trimestre    | texto    | Trimestre| Os dados serão trazidos a partir do tri forn como parâmetro no form AAAAT. |
+| $format      | texto    | $format  | Tipo de conteúdo que será retornado.                                      |
+| $select      | texto    | $select  | Propriedades que serão retornadas.                                        |
+| $filter      | texto    | $filter  | Filtro de seleção de entidades. Exemplo: Nome eq 'João'.                  |
+| $orderby     | texto    | $orderby | Propriedades para ordenação das entidades. Exemplo: Nome asc, Idade desc. |
+| $skip        | inteiro  | $skip    | Índice (maior ou igual a zero) da primeira entidade que será retornada.   |
+| $top         | inteiro  | $top     | Número máximo (maior que zero) de entidades que serão retornadas.        |
 
 
-├── src/
-│   ├── extractTransform.py
-│   ├── load.py
-│   └── main.py
-├── datasets/
-│   └── meiosPagamentosTri.csv
-└── README.md
-          		 
+### Resultado
 
- ### Função para extrair dados da API do Banco Central
- ### Função para salvar os dados extraídos em CSV
- ### Arquivo principal que executa a extração e carga dos dados
- ### Arquivo CSV gerado com os dados extraídos
- ### Documentação do projeto
+| Nome                         | Tipo     | Título                        | Descrição                                                                                                           |
+|------------------------------|----------|-------------------------------|---------------------------------------------------------------------------------------------------------------------|
+| datatrimestre                | texto    | Trimestre                     |                                                                                                                     |
+| valorPix                     | decimal  | Valor Pix                     | Volume financeiro (R$ milhões) de transações Pix liquidadas trimestralmente no SPI e fora do SPI, considerando ordens de pagamento e devoluções no período. |
+| valorTED                     | decimal  | Valor TED                     | Montante financeiro (R$ milhões) trimestral transferido por meio de TED.                                           |
+| valorTEC                     | decimal  | Valor TEC                     | Montante financeiro (R$ milhões) trimestral transferido por meio de TEC.                                           |
+| valorCheque                  | decimal  | Valor Cheque                  | Montante financeiro (R$ milhões) de cheques interbancários e intrabancários compensados trimestralmente.           |
+| valorBoleto                  | decimal  | Valor Boleto                  | Montante financeiro (R$ milhões) de boletos interbancários e intrabancários compensados trimestralmente.           |
+| valorDOC                     | decimal  | Valor DOC                     | Montante financeiro (R$ milhões) trimestral transferido por meio de DOC.                                           |
+| valorCartaoCredito           | decimal  | Valor Cartão de Crédito       | Valor (R$ milhões) de transações realizadas com cartão de crédito.                                                 |
+| valorCartaoDebito            | decimal  | Valor Cartão de Débito        | Valor (R$ milhões) de transações realizadas com cartão de débito trimestralmente.                                  |
+| valorCartaoPrePago           | decimal  | Valor Cartão Pré-pago         | Valor (R$ milhões) de transações realizadas com cartão pré-pago trimestralmente.                                    |
+| valorTransIntrabancaria      | decimal  | Valor Transferência Intrabancária | Montante financeiro (R$ milhões) de transferências realizadas trimestralmente entre contas de clientes da Instituição. |
+| valorConvenios               | decimal  | Valor Convênio                | Montante financeiro (R$ milhões) referente a arrecadações trimestrais governamentais e não-governamentais.          |
+| valorDebitoDireto            | decimal  | Valor Débito Direto           | Montante financeiro (R$ milhões) trimestral referente a débitos previamente autorizados pelo cliente em sua conta corrente. |
+| valorSaques                  | decimal  | Valor Saque                   | Montante sacado (R$ milhões) nos caixas eletrônicos trimestralmente.                                                |
+| quantidadePix                | decimal  | Quantidade Pix                | Quantidade (em milhares) de transações Pix liquidadas trimestralmente no SPI e fora do SPI.                        |
+| quantidadeTED                | decimal  | Quantidade TED                | Quantidade (em milhares) de TED realizadas trimestralmente.                                                        |
+| quantidadeTEC                | decimal  | Quantidade TEC                | Quantidade (em milhares) de TEC realizadas trimestralmente.                                                        |
+| quantidadeCheque             | decimal  | Quantidade Cheque             | Quantidade (em milhares) de cheques interbancários e de cheques intrabancários compensados trimestralmente.        |
+| quantidadeBoleto             | decimal  | Quantidade Boleto             | Quantidade (em milhares) de cheques interbancários e intrabancários compensados trimestralmente.                   |
+| quantidadeDOC                | decimal  | Quantidade DOC                | Quantidade (em milhares) de DOC realizados trimestralmente.                                                        |
+| quantidadeCartaoCredito      | decimal  | Quantidade Cartão de Crédito  | Quantidade (em milhares) de transações realizadas com cartão de crédito trimestralmente.                           |
+| quantidadeCartaoDebito       | decimal  | Quantidade Cartão de Débito   | Quantidade (em milhares) de transações realizadas com cartão de débito trimestralmente.                            |
+| quantidadeCartaoPrePago      | decimal  | Quantidade Cartão Pré-pago    | Quantidade (em milhares) de transações realizadas com cartão pré-pago trimestralmente.                             |
+| quantidadeTransIntrabancaria | decimal  | Quantidade de Transferência Intrabancária | Quantidade (em milhares) de transferências realizadas trimestralmente entre contas de clientes da Instituição.    |
+| quantidadeConvenios          | decimal  | Quantidade Convênio           | Quantidade (em milhares) de transações realizadas referentes a arrecadações trimestrais governamentais e não-governamentais. |
+| quantidadeDebitoDireto       | decimal  | Quantidade Débito Direto      | Quantidade (em milhares) de transações trimestrais referente a débitos previamente autorizados pelo cliente.       |
+| quantidadeSaques             | decimal  | Quantidade de Saque           | Quantidade (em milhares) de saques realizados nos caixas eletrônicos trimestralmente.                              |
 
 
-
-# Dependências
-O projeto requer as seguintes bibliotecas:
-
-requests: Para fazer requisições à API do Banco Central.
-
-pandas: Para manipulação de dados e exportação para CSV.
-
-# 📊 Dados sobre Estabelecimentos, Transações e Tarifas de Cartões de Pagamento
-
-## 📌 Visão Geral
-Este repositório contém informações detalhadas sobre a aceitação de cartões de pagamento, incluindo estabelecimentos credenciados, tarifas de intercâmbio, taxas de desconto, terminais de autoatendimento (ATM), volumetria de operações e programas de recompensa.
-
-Os dados são atualizados trimestralmente e ficam disponíveis 90 dias após o final de cada trimestre.
-
----
-| **Coluna**                        | **Tipo**   | **Descrição**    | **Exemplo**              |                                                                                                                                                                                             
-|-----------------------------------|------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------|
-| **trimestre**                     | texto      | Data-base de referência no formato AAAAT (Ano e Trimestre).                                                                                                                                                 | "202503"                 |
-| **funcaoCartao**                  | texto      | Função do cartão de pagamento, especificando a forma de pagamento escolhida pelo portador e aceita pelo estabelecimento credenciado.                                                                         | "Crédito"                |
-| **bandeira**                      | texto      | Bandeira que detém os direitos e deveres da marca estampada no cartão, incluindo as bandeiras pertencentes aos emissores.                                                                                     | "Visa"                   |
-| **produto**                       | texto      | Categoria atribuída a um cartão de pagamento, com um conjunto de vantagens que o diferenciam, conforme o perfil do portador.                                                                                  | "Premium"                |
-| **modalidade**                    | texto      | Define se o cartão de crédito é emitido em parceria com comerciante ou entidade.                                                                                                                             | "Convênio"               |
-| **tarifaAnuidadeMedia**           | decimal    | Média das tarifas de anuidade praticadas pelo emissor, calculada pela receita trimestral das tarifas de anuidade dividida pelo número de cartões com cobrança de tarifa.                                           | 120.50                   |
-| **qtdPontosAcumulados**           | decimal    | Estoque de pontos creditados nas contas dos portadores no final do trimestre, considerando pontos adquiridos no trimestre, menos os pontos transferidos ou expirados.                                           | 1,250.00                 |
-| **qtdPontosAdquiridos**           | decimal    | Quantidade de pontos acumulados pelos portadores de cartões no âmbito dos programas de recompensa, no decorrer do trimestre.                                                                                   | 500.00                   |
-| **qtdPontosConvertidos**          | decimal    | Quantidade de pontos transferidos para programas de fidelidade/recompensa de terceiros no decorrer do trimestre.                                                                                             | 150.00                   |
-| **qtdPontosExpirados**            | decimal    | Quantidade de pontos expirados no decorrer do trimestre, no âmbito dos programas de recompensa do emissor.                                                                                                     | 50.00                    |
-| **valorGastoProgramaRecompra**    | decimal    | Valor total gasto no trimestre pelo emissor para repasses em programas de fidelidade/recompensa de terceiros, com aquisição de bens ou serviços pelos portadores de cartões.                                      | 100,000.00               |
-
----
 

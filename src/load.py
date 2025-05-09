@@ -1,48 +1,60 @@
 import pandas as pd
 import sqlite3
-
 from sqlalchemy import create_engine
 
 
-def salvarCsv(df: pd.DataFrame, nome_arquivo: str, separador: str, decimal: str):
+def salvarCsv(
+    df: pd.DataFrame, 
+    nome_arquivo: str, 
+    separador: str, 
+    decimal: str
+):
     """
-    Função para salvar um DataFrame em um arquivo CSV.
+    **Função para salvar um DataFrame em um arquivo CSV**
 
-    Parâmetros:
-    df (pd.DataFrame): O DataFrame que será salvo.
-    nome_arquivo (str): O nome do arquivo CSV a ser criado.
-    separador (str): O caractere usado como separador de colunas no arquivo CSV.
-    decimal (str): O caractere usado para separar os valores decimais no arquivo CSV.
+    *Parâmetros:*
+        - df (pd.DataFrame): DataFrame a ser salvo;
+        - nome_arquivo (str): Caminho do arquivo CSV;
+        - separador (str): Delimitador dos campos no CSV;
+        - decimal (str): Caractere usado para separação decimal;
+    
+    *Exemplo:* 
+        - salvarCsv(dadosBcb, "etlBCB/src/datasets/meiosPagamentosTri.csv", ";", ".")
 
-    Retorna:
-    None: A função apenas salva o arquivo e não retorna nenhum valor.
+    *Saída:*
+        - None (A função apenas salva o arquivo e não retorna valor)
     """
 
     df.to_csv(nome_arquivo, sep=separador, decimal=decimal)
+
     return
 
 
-def salvarSQLite(df: pd.DataFrame, nome_banco: str, nome_tabela: str):
+def salvarSQLite(
+    df: pd.DataFrame, 
+    nome_banco: str, 
+    nome_tabela: str
+):
     """
-    Função para salvar um DataFrame em um banco de dados SQLite.
+    **Função para salvar um DataFrame em um banco de dados SQLite**
 
-    Parâmetros:
-    df (pd.DataFrame): O DataFrame que será salvo.
-    nome_banco (str): O nome do arquivo do banco de dados SQLite.
-    nome_tabela (str): O nome da tabela onde os dados serão salvos.
-    Retorna:
-    None: A função apenas salva os dados no banco de dados e não retorna nenhum valor.
-    Exemplo:
-    salvarSQLite(df, 'dados.db', 'tabela_dados')
+    *Parâmetros:*
+        - df (pd.DataFrame): DataFrame a ser salvo;
+        - nome_banco (str): Caminho do banco de dados SQLite;
+        - nome_tabela (str): Nome da tabela onde os dados serão inseridos;
 
+    *Exemplo:*
+        - salvarSQLite(dadosBcb, "etlBCB/src/datasets/etlbcb.db", "meios_pagamentos_tri")
+
+    *Saída:*
+        - None (A função apenas salva o arquivo e não retorna valor)
     """
-
     Conn = sqlite3.connect(nome_banco)
 
-    # converter o meu df para arquivo sql.
     df.to_sql(nome_tabela, Conn, if_exists="replace", index=False)
 
     Conn.close()
+
     return
 
 
@@ -55,22 +67,24 @@ def salvarMySQL(
     nome_tabela: str,
 ):
     """
-    Função para salvar um DataFrame em um banco de dados MySQL.
+    **Função para salvar um DataFrame em um banco de dados MySQL**
 
-    Parâmetros:
-    df (pd.DataFrame): O DataFrame que será salvo.
-    nome_banco (str): O nome do banco de dados MySQL.
-    nome_tabela (str): O nome da tabela onde os dados serão salvos.
+    *Parâmetros:*
+        - df (pd.DataFrame): DataFrame a ser salvo.
+        - usuario (str): Nome do usuário do banco de dados.
+        - senha (str): Senha do banco de dados.
+        - host (str): Endereço do servidor do banco de dados.
+        - nome_banco (str): Nome do banco de dados.
+        - nome_tabela (str): Nome da tabela onde os dados serão inseridos.
+    
+    *Exemplo:* 
+        - salvarMySQL(dadosBcb, "root", "root", "localhost", "etlbcb", "meios_pagamentos_tri")
 
-    Retorna:
-    None: A função apenas salva os dados no banco de dados e não retorna nenhum valor.
-
-    Exemplo:
-    salvarMySQL(df, 'dados', 'tabela_dados')
-
+    Saída:
+        - None (A função apenas salva o arquivo e não retorna valor)
     """
-
     engine = create_engine(f"mysql+pymysql://{usuario}:{senha}@{host}/{nome_banco}")
+
     df.to_sql(nome_tabela, con=engine, if_exists="replace", index=False)
 
     return
